@@ -11,3 +11,7 @@ jobs:
     steps:
       -  name: Greeting
          run: echo "Hello from GitHub Actions!"
+      -  name: Checkout Repository
+         uses: actions/checkout@v4
+      -  name: Verify Repository Checkout
+         run: ls -la
