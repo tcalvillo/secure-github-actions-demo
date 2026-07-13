@@ -1,0 +1,38 @@
+
+# Purpose: Publish approved code
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - prod
+
+permissions:
+    contents: read # Allows my workflow to read my repo files
+    pages: write   # Workflow is allowed to publish to GitHub Pages
+    id-token: write # Required for secure GitHub Pages deployment (OIDC)
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    environment: 
+      name: github-pages # Deployment environment. Also defines rules and protections
+      url: ${{ steps.deployment.outputs.page_url }} # After deployment finishes, display the URL of the published website.
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4  # Checkout source code
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5  # Workflow is going to publish a GitHub Pages site
+
+      - name: Upload GitHub Pages Artifact
+        uses: actions/upload-pages-artifact@v3  # GitHub Pages deploys an artifact (a packaged copy of the website)
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4  # Deploy website
