@@ -9,6 +9,9 @@ on:
       - dev
       - test
 
+permissions:
+    contents: read # Allows my workflow to read my repo files
+
 jobs:
   build:
     runs-on: ubuntu-latest
