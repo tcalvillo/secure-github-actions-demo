@@ -1,3 +1,5 @@
+# Purpose: Build and Validation
+
 name: Continuous Integration
 
 on:
@@ -9,9 +11,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # First phase testing
       -  name: Greeting
          run: echo "Hello from GitHub Actions!"
       -  name: Checkout Repository
-         uses: actions/checkout@v4
+         uses: actions/checkout@v4 # clone repo's code into workflow's VM
       -  name: Verify Repository Checkout
          run: ls -la
