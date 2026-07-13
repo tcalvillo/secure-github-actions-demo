@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - dev
+      - test
 
 jobs:
   build:
@@ -16,7 +17,7 @@ jobs:
       
       -  name: Verify Repository Checkout
          run: ls -la
-         
+
       -  name: Verify Required Project Files
          run: |
            ls index.html
