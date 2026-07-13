@@ -1,0 +1,24 @@
+# Purpose: Build and Validation
+
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      -  name: Checkout Repository
+         uses: actions/checkout@v4 # clone repo's code into workflow's VM
+      
+      -  name: Verify Repository Checkout
+         run: ls -la
+         
+      -  name: Verify Required Project Files
+         run: |
+           ls index.html
+           ls style.css
+           ls script.js
