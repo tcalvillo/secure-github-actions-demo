@@ -13,9 +13,14 @@ permissions:
     pages: write   # Workflow is allowed to publish to GitHub Pages
     id-token: write # Required for secure GitHub Pages deployment (OIDC)
 
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     environment: 
       name: github-pages # Deployment environment. Also defines rules and protections
